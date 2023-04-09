@@ -11,6 +11,7 @@ import java.util.Collection;
 @Setter
 @Getter
 @NoArgsConstructor
+//ADAUGAT ULTERIOR - FOLOSESTE SECURITATE
 public class Doctor {
 
     @Id

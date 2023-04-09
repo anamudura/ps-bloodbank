@@ -35,10 +35,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Users save(UserRegDto userRegDto) throws UsernameNotFoundException{
 
+        System.out.println(userRegDto.getEmail() + userRegDto.getPassword());
         Users users = new Users(userRegDto.getName(),userRegDto.getEmail(),userRegDto.getPassword(),userRegDto.getLocation(),
                 List.of(new Role("ROLE_DONATOR")));
 
-            return userRepository.save(users);
+        return userRepository.save(users);
 
     }
 
@@ -96,7 +97,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateDoctor(UserRegDto userRegDto) {
-    userRepository.updateDoc(userRegDto.getId(),userRegDto.getEmail(),userRegDto.getLocation(),userRegDto.getName());
+        userRepository.updateDoc(userRegDto.getId(),userRegDto.getEmail(),userRegDto.getLocation(),userRegDto.getName());
     }
 
 

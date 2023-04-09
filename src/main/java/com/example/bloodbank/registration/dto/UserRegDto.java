@@ -1,15 +1,13 @@
 package com.example.bloodbank.registration.dto;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @EqualsAndHashCode
 @ToString
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserRegDto {
     private Long id;
     private String name;
@@ -17,10 +15,6 @@ public class UserRegDto {
     private String password;
     private String location;
 
-    public UserRegDto()
-    {
-
-    }
 
     public UserRegDto(String name, String email, String password, String locatie, Long id) {
         this.name = name;
