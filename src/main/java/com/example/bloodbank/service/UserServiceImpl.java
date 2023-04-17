@@ -9,10 +9,10 @@ import com.example.bloodbank.registration.dto.UserRegDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.authority.SimpleGrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Service
-@Transactional
+@Transactional(readOnly=true)
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -33,9 +33,8 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Users save(UserRegDto userRegDto) throws UsernameNotFoundException{
+    public Users save(UserRegDto userRegDto){
 
-        System.out.println(userRegDto.getEmail() + userRegDto.getPassword());
         Users users = new Users(userRegDto.getName(),userRegDto.getEmail(),userRegDto.getPassword(),userRegDto.getLocation(),
                 List.of(new Role("ROLE_DONATOR")));
 
@@ -88,6 +87,14 @@ public class UserServiceImpl implements UserService {
     public List<Users> getDoctors2() {
         return userRepository.findUsersByRole2("ROLE_DOCTOR");
     }
+//    @Override
+//    public List<UserRegDto> getDoctors2() {
+//
+//        //return userRepository.findUsersByRole2("ROLE_DOCTOR");
+//        List <UserRegDto> users = userRepository.findAll().stream()
+//                .map(user -> new UserRegDto(user)).filter(user -> user.getRoles().contains("ROLE_DOCTOR")).collect(Collectors.toList());
+//        return users;
+   // }
 
 
     @Override
@@ -101,17 +108,17 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Users users = userRepository.findByEmail(email);
-
-        if(users == null) {
-            throw new UsernameNotFoundException("Invalid username or password.");
-        }
-        return new org.springframework.security.core.userdetails.User(users.getEmail(), users.getPassword(), mapRolesToAuthorities(users.getRoles()));
-    }
-
-    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<com.example.bloodbank.appuser.Role> roles) {
-        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+//        Users users = userRepository.findByEmail(email);
+//
+//        if(users == null) {
+//            throw new UsernameNotFoundException("Invalid username or password.");
+//        }
+//        return new org.springframework.security.core.userdetails.User(users.getEmail(), users.getPassword(), mapRolesToAuthorities((Collection<Role>) users.getRoles()));
+//    }
+//
+//    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<com.example.bloodbank.appuser.Role> roles) {
+//        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+//    }
 }

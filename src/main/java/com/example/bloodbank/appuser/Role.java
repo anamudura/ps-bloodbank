@@ -1,5 +1,7 @@
 package com.example.bloodbank.appuser;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 

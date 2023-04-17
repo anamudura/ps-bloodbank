@@ -1,6 +1,7 @@
 package com.example.bloodbank.appuser.dao;
 
 import com.example.bloodbank.appuser.Users;
+import com.example.bloodbank.registration.dto.UserRegDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,6 +22,9 @@ public interface UserRepository extends JpaRepository<Users, Long> {
 
     @Query("SELECT user from Users user left join user.roles role where role.name = :name")
     List<Users> findUsersByRole2(@Param("name") String nume);
+
+//        @Query("SELECT user from Users user left join user.roles role where role.name = :name")
+//        List<UserRegDto> findUsersByRole2(@Param("name") String nume);
 
     @Modifying
     @Query("delete from Users u where u.id = :id")

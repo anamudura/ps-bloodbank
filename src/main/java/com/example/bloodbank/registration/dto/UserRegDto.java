@@ -1,6 +1,10 @@
 package com.example.bloodbank.registration.dto;
 
+import com.example.bloodbank.appuser.Role;
+import com.example.bloodbank.appuser.Users;
 import lombok.*;
+
+import java.util.Collection;
 
 @Getter
 @Setter
@@ -14,6 +18,7 @@ public class UserRegDto {
     private String email;
     private String password;
     private String location;
+    private Collection<Role> roles;
 
 
     public UserRegDto(String name, String email, String password, String locatie, Long id) {
@@ -21,6 +26,14 @@ public class UserRegDto {
         this.email = email;
         this.password = password;
         this.location = locatie;
+    }
+
+    public UserRegDto(Users user) {
+        this.name = user.getNume();
+        this.email = user.getEmail();
+        this.password = user.getPassword();;
+        this.location = user.getLocation();
+        this.roles = user.getRoles();
     }
 
     public String getName() {

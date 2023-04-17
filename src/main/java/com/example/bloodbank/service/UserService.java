@@ -2,7 +2,7 @@ package com.example.bloodbank.service;
 
 import com.example.bloodbank.appuser.Users;
 import com.example.bloodbank.registration.dto.UserRegDto;
-import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Service
 //@Transactional
-public interface UserService extends UserDetailsService {
+public interface UserService {
     final static String USER_NOT_FOUND_msg = "USER WITH EMAIL %s NOT FOUND";
 
 
