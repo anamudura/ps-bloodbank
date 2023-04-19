@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+
 function DoctorAction()
 {
-    const [doctors, setDoctors] = useState([])
+  const navigate = useNavigate();  
+  const [doctors, setDoctors] = useState([])
     useEffect(() => { 
         loadDoctors();
     });
@@ -15,10 +18,13 @@ function DoctorAction()
 
     }
     const deleteUser = async (id) => {
-        await axios.delete(`http://localhost:8080/user/${id}`);
+        await axios.post(`http://localhost:8080/users/${id}`);
         loadDoctors();
       };
-    
+      const navigateToRegisterDoc = () => {
+        // 👇️ navigate to /contacts
+        navigate('/registerdoc');
+      };
     return (
         <div className="container">
         <div className="py-4">
@@ -65,6 +71,7 @@ function DoctorAction()
               ))}
             </tbody>
           </table>
+          <button onClick={navigateToRegisterDoc}>Add New Doctor</button>
         </div>
       </div>
     );

@@ -5,6 +5,16 @@ import AdminPage from "./components/AdminPage";
 import DoctorPage from "./components/DoctorPage";
 import DonatorPage from "./components/DonatorPage";
 import DonatorAction from "./components/DoctorAction";
+import EditDoctor from "./components/EditDoctor";
+import AddDoctor from "./components/AddDoctor";
+import ViewDoctor from "./components/ViewDoctor";
+import DonatorAccount from "./components/DonatorAccount";
+import EditDonator from "./components/EditDonator";
+import DeleteDonator from "./components/DeleteDonator";
+import ShowLocations from "./components/ShowLocations";
+import Appointment from "./components/Appointment";
+
+
 
 
 
@@ -20,6 +30,14 @@ function App() {
           <Route path="/doctor" element={<DoctorPage />} />
           <Route path="/donator" element={<DonatorPage />} />
           <Route path="/users" element={<DonatorAction />} />
+          <Route path="/appointment" element={<Appointment />} />
+          <Route path="/locations" element={<ShowLocations />} />
+          <Route path="/account/:id" element={<DonatorAccount />} />
+          <Route path="/viewuser/:id" element={<ViewDoctor />} />
+          <Route path="/edituser/:id" element={<EditDoctor />} />
+          <Route path="/edit-acc/:id" element={<EditDonator />} />
+          <Route path="/delete-acc/:id" element={<DeleteDonator />} />
+          <Route path = "/registerdoc" element = {<AddDoctor/>}></Route>
             </Routes>
         </BrowserRouter>
       
