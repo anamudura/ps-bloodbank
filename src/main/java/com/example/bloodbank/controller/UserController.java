@@ -11,14 +11,19 @@ import com.example.bloodbank.service.AppointmentService;
 import com.example.bloodbank.service.LocationService;
 import com.example.bloodbank.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+//Desparte controller dupa fiecare actiune
 @RestController
 @CrossOrigin("http://localhost:3000")
 @AllArgsConstructor
@@ -131,16 +136,14 @@ public class UserController {
     @PostMapping("/appointment")
     public ResponseEntity<?> appointment(@RequestBody AppointmentDto appointmentDto,
                                              BindingResult result) {
-//        Appointment app = appointmentService.getApp(appointmentDto.getId());
-//
-//        if (app != null && app.getId() != null) {
-//            result.rejectValue("id", null,
-//                    "There is already an account registered with the same email");
-//            return (ResponseEntity<?>) ResponseEntity.internalServerError();
-//        }
-
         appointmentService.save(appointmentDto);
         return ResponseEntity.ok(appointmentDto);
+    }
+    @GetMapping("/getapp/{data}")
+    public ResponseEntity<List<Appointment>> getAppointmentToday(@PathVariable("data") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate data)
+    {
+       List<Appointment> app = appointmentService.getAppoint(data);
+       return ResponseEntity.ok(app);
     }
 
 

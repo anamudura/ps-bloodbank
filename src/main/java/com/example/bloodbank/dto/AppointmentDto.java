@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.xml.stream.Location;
+import java.time.LocalDate;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,9 +15,7 @@ import javax.xml.stream.Location;
 public class AppointmentDto {
     private Long id;
     private String bloodtype;
-    private int day;
-    private int month;
-    private int year;
+    private LocalDate prog;
 
     private Location loc;
 }

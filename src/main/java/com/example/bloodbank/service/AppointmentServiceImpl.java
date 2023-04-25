@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @Service
 @Transactional
 @AllArgsConstructor
@@ -15,15 +18,22 @@ public class AppointmentServiceImpl implements AppointmentService{
     @Override
     public Appointment save(AppointmentDto appointmentDto) {
         Appointment app =
-                new Appointment(appointmentDto.getBloodtype(),appointmentDto.getDay(),
-                        appointmentDto.getMonth(), appointmentDto.getYear());
+                new Appointment(appointmentDto.getBloodtype(),appointmentDto.getProg());
 
         return appointmentRepository.save(app);
 
     }
+    //SELECT COUNT PENTRU PROGRAMARI
+    //SA APARA OPTIUNILE CAND SUNT AVAIBLE SLOTS PE ZILE
+    //programari daily - sau programari pe luni
 
     @Override
     public Appointment getApp(Long id) {
         return appointmentRepository.getById(id);
+    }
+
+    @Override
+    public List<Appointment> getAppoint(LocalDate nume) {
+        return appointmentRepository.findByProg(LocalDate.now());
     }
 }

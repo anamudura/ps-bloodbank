@@ -1,5 +1,6 @@
 package com.example.bloodbank.appuser;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Locations {
     private int nrmaximdon;
 
     @OneToMany(mappedBy = "locations")
+    @JsonManagedReference
     private List<Appointment> app;
 
 }

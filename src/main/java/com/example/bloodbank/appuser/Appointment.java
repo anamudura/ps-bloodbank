@@ -1,11 +1,14 @@
 package com.example.bloodbank.appuser;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -18,17 +21,14 @@ public class Appointment {
     private Long id;
 
     private String bloodtype;
-    private int day;
-    private int month;
-    private int year;
+    private LocalDate prog;
 
     @ManyToOne
+    @JsonBackReference
     private Locations locations;
 
-    public Appointment(String bloodtype, int day, int month, int year) {
+    public Appointment(String bloodtype, LocalDate prog) {
         this.bloodtype = bloodtype;
-        this.day = day;
-        this.month = month;
-        this.year = year;
+        this.prog = prog;
     }
 }
