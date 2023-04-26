@@ -13,7 +13,8 @@ import EditDonator from "./components/EditDonator";
 import DeleteDonator from "./components/DeleteDonator";
 import ShowLocations from "./components/ShowLocations";
 import Appointment from "./components/Appointment";
-
+import TodayAppoint from "./components/TodayAppoint";
+import AllAppoint from "./components/AllAppoint";
 
 
 
@@ -36,6 +37,8 @@ function App() {
           <Route path="/viewuser/:id" element={<ViewDoctor />} />
           <Route path="/edituser/:id" element={<EditDoctor />} />
           <Route path="/edit-acc/:id" element={<EditDonator />} />
+          <Route path="/appoint/:id" element={<TodayAppoint />} />
+          <Route path="/allapp/:id" element={<AllAppoint />} />
           <Route path="/delete-acc/:id" element={<DeleteDonator />} />
           <Route path = "/registerdoc" element = {<AddDoctor/>}></Route>
             </Routes>

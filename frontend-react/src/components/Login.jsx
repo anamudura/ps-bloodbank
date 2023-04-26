@@ -49,7 +49,7 @@ function Login() {
                 }
                 else if(currentUser.roles[0].name == "ROLE_DOCTOR")
                 { 
-                    navigate("/doctor");
+                    navigate("/doctor", {state:{id: currentUser.id}});
                     
              }
                
