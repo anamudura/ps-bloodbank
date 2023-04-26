@@ -1,5 +1,6 @@
 package com.example.bloodbank.appuser;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,8 +33,16 @@ public class Users {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id")
     )
-    //@ManyToMany
     private Collection<Role> roles;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "locations_table",
+            joinColumns =
+                    { @JoinColumn(name = "user_id", referencedColumnName = "id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "location_id", referencedColumnName = "id") })
+    @JsonManagedReference
+    private Locations bloodbank;
 
     public Long getId() {
         return id;

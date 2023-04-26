@@ -36,4 +36,11 @@ public class AppointmentServiceImpl implements AppointmentService{
     public List<Appointment> getAppoint(LocalDate nume) {
         return appointmentRepository.findByProg(LocalDate.now());
     }
+
+    @Override
+    public List<Appointment> getappDoc(LocalDate date, Long id1, Long id2) {
+        return appointmentRepository.findByLocations_IdAndLocations_User_IdAndProg(id1,id2,LocalDate.now());
+    }
+
+
 }

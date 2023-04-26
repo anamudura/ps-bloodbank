@@ -1,5 +1,6 @@
 package com.example.bloodbank.repo;
 
+import com.example.bloodbank.appuser.Locations;
 import com.example.bloodbank.appuser.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -31,5 +32,8 @@ public interface UserRepository extends JpaRepository<Users, Long> {
     @Query("update Users u set u.email = :email, u.location = :location, u.nume = :nume where u.id = :id")
     void updateDoc(@Param("id") Long id, @Param("email") String email, @Param("location") String location,
                    @Param("nume") String nume);
+
+    @Query("SELECT l FROM Locations l JOIN l.user u WHERE u.id = :userId")
+    Locations findLocationByUserId(@Param("userId") Long userId);
 
 }

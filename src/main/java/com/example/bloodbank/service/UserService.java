@@ -1,5 +1,6 @@
 package com.example.bloodbank.service;
 
+import com.example.bloodbank.appuser.Locations;
 import com.example.bloodbank.appuser.Users;
 import com.example.bloodbank.dto.UserRegDto;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -32,6 +33,8 @@ public interface UserService extends UserDetailsService{
     Optional<Users> getDocById(Long id);
 
     void updateDoctor(UserRegDto userRegDto);
+    Locations getLocationForUser(Long userId);
+
 
 
 

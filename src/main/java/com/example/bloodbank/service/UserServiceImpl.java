@@ -1,5 +1,6 @@
 package com.example.bloodbank.service;
 
+import com.example.bloodbank.appuser.Locations;
 import com.example.bloodbank.appuser.Role;
 import com.example.bloodbank.appuser.Users;
 import com.example.bloodbank.repo.DoctorRepository;
@@ -97,6 +98,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateDoctor(UserRegDto userRegDto) {
         userRepository.updateDoc(userRegDto.getId(),userRegDto.getEmail(),userRegDto.getLocation(),userRegDto.getName());
+    }
+
+    @Override
+    public Locations getLocationForUser(Long userId) {
+        return userRepository.findLocationByUserId(userId);
     }
 
 

@@ -14,5 +14,7 @@ public interface AppointmentService {
     Appointment save(AppointmentDto appointmentDto);
     Appointment getApp(Long id);
     List<Appointment> getAppoint(LocalDate nume);
+    List<Appointment> getappDoc(LocalDate date, Long id1, Long id2);
+   // List<Appointment> getAllAp(Long id1, Long id2);
 
 }

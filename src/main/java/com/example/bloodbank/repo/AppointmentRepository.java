@@ -1,6 +1,8 @@
 package com.example.bloodbank.repo;
 
 import com.example.bloodbank.appuser.Appointment;
+import com.example.bloodbank.appuser.Locations;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,8 +15,19 @@ import java.util.List;
 public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     Appointment getById(Long id);
 
-//    @Query("SELECT app from Appointment app inner join app.locations loca where  = current_date")
-//    List<Appointment> getAppointment(@Param("name") String nume);
-
     List<Appointment> findByProg(LocalDate prog);
+
+    List<Appointment> findByProgAndIdIs(LocalDate prog, Long id);
+
+    @Query("select a from Appointment a where a.locations.id = ?1 and a.locations.user.id = ?2 and a.prog = ?3")
+    List<Appointment> findByLocations_IdAndLocations_User_IdAndProg(Long id, Long id1, LocalDate prog);
+
+    @Query("select a from Appointment a where a.locations.id = ?1 and a.locations.user.id = ?2")
+    List<Appointment> findByIdAndLocations_Id(Long id, Long id1, Pageable pageable);
+
+
+
+
+
+
 }

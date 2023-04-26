@@ -1,5 +1,6 @@
 package com.example.bloodbank.appuser;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +30,9 @@ public class Locations {
     @OneToMany(mappedBy = "locations")
     @JsonManagedReference
     private List<Appointment> app;
+
+    @OneToOne(mappedBy = "bloodbank")
+    @JsonBackReference
+    private Users user;
 
 }
